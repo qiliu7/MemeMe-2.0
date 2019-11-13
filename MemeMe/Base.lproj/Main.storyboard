@@ -7,30 +7,30 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="158-L7-pHH">
-                                <rect key="frame" x="0.0" y="1292" width="0.0" height="44"/>
+                                <rect key="frame" x="0.0" y="810" width="414" height="44"/>
                                 <items>
                                     <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="WiB-oI-Qq5"/>
-                                    <barButtonItem title="Item" id="xR4-35-UsR"/>
+                                    <barButtonItem systemItem="camera" id="xR4-35-UsR"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jN9-0I-Dvr"/>
-                                    <barButtonItem title="Item" id="iZs-SV-jyd"/>
+                                    <barButtonItem title="Album" id="iZs-SV-jyd"/>
                                     <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="sbA-av-w0E"/>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nkq-6Q-vkb">
-                                <rect key="frame" x="0.0" y="526" width="0.0" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="f5B-Sv-36F"/>
+                                    <barButtonItem systemItem="action" id="f5B-Sv-36F"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="l7L-a5-Nzm"/>
-                                    <barButtonItem title="Item" id="qfQ-sR-70R"/>
+                                    <barButtonItem systemItem="cancel" id="qfQ-sR-70R"/>
                                 </items>
                             </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TbI-x3-7qK">
@@ -68,6 +68,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="albumButton" destination="iZs-SV-jyd" id="2SM-90-Bkb"/>
+                        <outlet property="bottomTextField" destination="7Z6-gk-wd9" id="3pW-Aa-uKN"/>
+                        <outlet property="cameraButton" destination="xR4-35-UsR" id="tRD-Dd-Wf8"/>
+                        <outlet property="cancelButton" destination="qfQ-sR-70R" id="tqa-cu-CDf"/>
+                        <outlet property="imageView" destination="TbI-x3-7qK" id="GZL-FL-EDy"/>
+                        <outlet property="shareButton" destination="f5B-Sv-36F" id="xnF-SW-Cnz"/>
+                        <outlet property="topTextField" destination="Hal-pj-5jn" id="Y03-CG-ZKD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -41,9 +41,18 @@ class MemeEditorViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
     cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     albumButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+    
+    subscribeToKeyboardNotifications()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    unsubscribeFromKeyboardNotifications()
   }
   
   @IBAction private func pickAnImage(_ sender: UIBarButtonItem) {
@@ -62,6 +71,37 @@ class MemeEditorViewController: UIViewController {
     imagePicker.delegate = self
     present(imagePicker, animated: true, completion: nil)
   }
+  
+  private func subscribeToKeyboardNotifications() {
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+  
+  private func unsubscribeFromKeyboardNotifications() {
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+  
+  @objc func keyboardWillShow(_ notification: Notification) {
+    // Only move view up when editing the bottom text field
+    if bottomTextField.isFirstResponder {
+      view.frame.origin.y -= getKeyboardHeight(notification)
+    }
+  }
+  
+  @objc func keyboardWillHide(_ notification: Notification)  {
+    if bottomTextField.isFirstResponder {
+      view.frame.origin.y = 0
+    }
+  }
+  
+  private func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+    let info = notification.userInfo
+    let keyboardSize = info![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+    return keyboardSize.cgRectValue.height
+  }
+  
+  
 }
 
 extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -88,6 +128,10 @@ extension MemeEditorViewController: UITextFieldDelegate {
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    // If user did not input anything, show default "TOP" and "BOTTOM" again
+    if textField.text == "" {
+      textField.text = textField == topTextField ? "TOP" : "BOTTOM"
+    }
     textField.resignFirstResponder()
     return true
   }

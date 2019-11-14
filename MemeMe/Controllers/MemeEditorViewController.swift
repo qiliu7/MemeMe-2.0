@@ -45,6 +45,7 @@ class MemeEditorViewController: UIViewController {
     
     cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     albumButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+    shareButton.isEnabled = false
     
     subscribeToKeyboardNotifications()
   }
@@ -124,6 +125,7 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let image = info[.originalImage] as? UIImage {
       imageView.image = image
+      shareButton.isEnabled = true
     }
     dismiss(animated: true, completion: nil)
   }

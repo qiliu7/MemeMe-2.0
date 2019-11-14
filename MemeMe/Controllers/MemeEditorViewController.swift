@@ -101,6 +101,21 @@ class MemeEditorViewController: UIViewController {
     return keyboardSize.cgRectValue.height
   }
   
+  private func save() {
+    let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+    print(meme)
+  }
+  
+  private func generateMemedImage() -> UIImage {
+    
+    UIGraphicsBeginImageContext(self.view.frame.size)
+    view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+    let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    
+    return memedImage
+  }
+  
   
 }
 

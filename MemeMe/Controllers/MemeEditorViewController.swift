@@ -9,12 +9,6 @@
 import UIKit
 
 class MemeEditorViewController: UIViewController {
-  
-  let memeTextAttributes: [NSAttributedString.Key: Any] = [
-    .strokeColor: UIColor.black,
-    .foregroundColor: UIColor.white,
-    .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-    .strokeWidth: -3.0]
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var topTextField: UITextField!
@@ -23,10 +17,17 @@ class MemeEditorViewController: UIViewController {
   @IBOutlet weak var albumButton: UIBarButtonItem!
   @IBOutlet weak var shareButton: UIBarButtonItem!
   @IBOutlet weak var cancelButton: UIBarButtonItem!
-  
+  @IBOutlet weak var topToolBar: UIToolbar!
+  @IBOutlet weak var bottomToolBar: UIToolbar!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let memeTextAttributes: [NSAttributedString.Key: Any] = [
+      .strokeColor: UIColor.black,
+      .foregroundColor: UIColor.white,
+      .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+      .strokeWidth: -3.0]
     
     let textFields = [topTextField, bottomTextField]
     
@@ -73,6 +74,17 @@ class MemeEditorViewController: UIViewController {
     present(imagePicker, animated: true, completion: nil)
   }
   
+  @IBAction private func share() {
+    let memedImage = generateMemedImage()
+    let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+    activityController.completionWithItemsHandler = {(ativity, success, returnedItems, error) in
+      if success {
+        self.save()
+      }
+    }
+    present(activityController, animated: true, completion: nil)
+  }
+  
   private func subscribeToKeyboardNotifications() {
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -91,6 +103,7 @@ class MemeEditorViewController: UIViewController {
   }
   
   @objc func keyboardWillHide(_ notification: Notification)  {
+    // Only move view down when finish editing the bottom text field
     if bottomTextField.isFirstResponder {
       view.frame.origin.y = 0
     }
@@ -104,20 +117,24 @@ class MemeEditorViewController: UIViewController {
   
   private func save() {
     let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
-    print(meme)
   }
   
   private func generateMemedImage() -> UIImage {
+    
+    // Hide toolbar
+    topToolBar.isHidden = true
+    bottomToolBar.isHidden = true
     
     UIGraphicsBeginImageContext(self.view.frame.size)
     view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
     let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
     
+    // Show toolbar
+    topToolBar.isHidden = false
+    bottomToolBar.isHidden = false
     return memedImage
   }
-  
-  
 }
 
 extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -24,12 +24,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SCAT" translatesAutoresizingMaskIntoConstraints="NO" id="PJl-DC-Il3" userLabel="Image View">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJl-DC-Il3" userLabel="Image View">
                                             <rect key="frame" x="20" y="11" width="187" height="128"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xj-ox-1ZY">
-                                            <rect key="frame" x="215" y="65" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xj-ox-1ZY">
+                                            <rect key="frame" x="215" y="64.5" width="179" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -39,7 +38,10 @@
                                         <constraint firstItem="PJl-DC-Il3" firstAttribute="top" secondItem="LCB-u5-Uqh" secondAttribute="topMargin" id="5bY-IR-j50"/>
                                         <constraint firstItem="PJl-DC-Il3" firstAttribute="leading" secondItem="LCB-u5-Uqh" secondAttribute="leadingMargin" id="9t0-4e-Kvb"/>
                                         <constraint firstItem="PJl-DC-Il3" firstAttribute="trailing" secondItem="LCB-u5-Uqh" secondAttribute="centerX" id="AMG-H5-foB"/>
+                                        <constraint firstItem="1Xj-ox-1ZY" firstAttribute="centerY" secondItem="LCB-u5-Uqh" secondAttribute="centerY" id="HQg-JW-shZ"/>
+                                        <constraint firstItem="1Xj-ox-1ZY" firstAttribute="trailing" secondItem="LCB-u5-Uqh" secondAttribute="trailingMargin" id="TyZ-Pe-ivX"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="PJl-DC-Il3" secondAttribute="bottom" id="fGu-hv-zdf"/>
+                                        <constraint firstItem="1Xj-ox-1ZY" firstAttribute="leading" secondItem="PJl-DC-Il3" secondAttribute="trailing" constant="8" id="zf3-oT-Lle"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -288,11 +290,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SCAT" width="1072" height="1174"/>
         <image name="collection_30x30" width="30" height="30"/>
         <image name="table_30x30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6TP-3l-1jN"/>
+        <segue reference="TtP-bO-zMy"/>
     </inferredMetricsTieBreakers>
 </document>

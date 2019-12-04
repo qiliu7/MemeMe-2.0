@@ -233,7 +233,7 @@
         <scene sceneID="Sz5-IO-LHj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FAz-xr-ohB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="table" catalog="system" id="WRB-kH-Rxc"/>
+                    <tabBarItem key="tabBarItem" title="" image="table_30x30" id="WRB-kH-Rxc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hnx-sr-hyF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -252,7 +252,7 @@
         <scene sceneID="kYa-9i-1TN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NCB-c8-rcy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="square.grid.4x3.fill" catalog="system" id="zVg-QG-axc"/>
+                    <tabBarItem key="tabBarItem" title="" image="collection_30x30" id="zVg-QG-axc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cTs-1g-7G3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -289,8 +289,8 @@
     </scenes>
     <resources>
         <image name="SCAT" width="1072" height="1174"/>
-        <image name="square.grid.4x3.fill" catalog="system" width="64" height="42"/>
-        <image name="table" catalog="system" width="64" height="46"/>
+        <image name="collection_30x30" width="30" height="30"/>
+        <image name="table_30x30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6TP-3l-1jN"/>

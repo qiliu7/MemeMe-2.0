@@ -85,6 +85,7 @@ class MemeEditorViewController: UIViewController {
       if success {
         self.save()
         // TODO: reload data in table or/ and colelction view
+        NotificationCenter.default.post(name: .didSaveMeme, object: nil)
       }
     }
     present(activityController, animated: true, completion: nil)
@@ -179,5 +180,9 @@ extension MemeEditorViewController: UITextFieldDelegate {
     textField.resignFirstResponder()
     return true
   }
+}
+
+extension Notification.Name {
+  static let didSaveMeme = Notification.Name("didSaveMeme")
 }
 

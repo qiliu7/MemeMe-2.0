@@ -18,18 +18,23 @@ class SentMemeTableViewController: UITableViewController {
     return appDelegate.memes
   }
   
+  deinit {
+    NotificationCenter.default.removeObserver(self, name: .didSaveMeme, object: nil)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     tableView.rowHeight = CGFloat(ROW_HEIGHT)
     tableView.separatorStyle = .none
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(onDidSaveMeme(_:)), name: .didSaveMeme, object: nil)
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    // TODO: - has to be reloaded when share is done in the editor view.
-    tableView.reloadData()
-  }
+//  override func viewWillAppear(_ animated: Bool) {
+//    super.viewWillAppear(animated)
+//    tableView.reloadData()
+//  }
   // MARK: - Table view data source
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,5 +50,9 @@ class SentMemeTableViewController: UITableViewController {
     cell.memeCaption.text = meme.topText + " " + meme.bottomText
     
     return cell
+  }
+  
+  @objc func onDidSaveMeme(_ notification: Notification) {
+    tableView.reloadData()
   }
 }

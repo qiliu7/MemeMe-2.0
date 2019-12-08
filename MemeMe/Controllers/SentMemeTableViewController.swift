@@ -30,15 +30,10 @@ class SentMemeTableViewController: UITableViewController {
     
     NotificationCenter.default.addObserver(self, selector: #selector(onDidSaveMeme(_:)), name: .didSaveMeme, object: nil)
   }
-  
-//  override func viewWillAppear(_ animated: Bool) {
-//    super.viewWillAppear(animated)
-//    tableView.reloadData()
-//  }
+
   // MARK: - Table view data source
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print("num called")
     return memes.count
   }
   

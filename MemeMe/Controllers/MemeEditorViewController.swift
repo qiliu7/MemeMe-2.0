@@ -16,13 +16,8 @@ class MemeEditorViewController: UIViewController {
   @IBOutlet weak var cameraButton: UIBarButtonItem!
   @IBOutlet weak var albumButton: UIBarButtonItem!
   @IBOutlet weak var shareButton: UIBarButtonItem!
-  // TODO: add function to cancelButton
-  @IBOutlet weak var cancelButton: UIBarButtonItem!
   @IBOutlet weak var topToolBar: UIToolbar!
   @IBOutlet weak var bottomToolBar: UIToolbar!
-  
-  
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -84,7 +79,6 @@ class MemeEditorViewController: UIViewController {
     activityController.completionWithItemsHandler = {(ativity, success, returnedItems, error) in
       if success {
         self.save()
-        // TODO: reload data in table or/ and colelction view
         NotificationCenter.default.post(name: .didSaveMeme, object: nil)
       }
     }

@@ -14,6 +14,7 @@ class SentMemeCollectionViewController: UICollectionViewController {
   
   private let ITEM_SPACE: CGFloat = 3.0
   private let reuseIdentifier = "MemeCollectionViewCell"
+  private let memeDetailControllerIdentifier = "MemeDetailViewController"
   var memes: [Meme] {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     return appDelegate.memes
@@ -47,6 +48,13 @@ class SentMemeCollectionViewController: UICollectionViewController {
     let meme = memes[indexPath.item]
     cell.memeImageView.image = meme.memedImage
     return cell
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let detailController = storyboard!.instantiateViewController(withIdentifier: memeDetailControllerIdentifier) as! MemeDetailViewController
+    let meme = memes[indexPath.item]
+    detailController.meme = meme
+    navigationController!.pushViewController(detailController, animated: true)
   }
   
  @objc func onDidSaveMeme(_ notification: Notification) {

@@ -11,6 +11,7 @@ import UIKit
 class SentMemeTableViewController: UITableViewController {
   
   private let reuseIdentifier = "MemeTableViewCell"
+  private let memeDetailControllerIdentifier = "MemeDetailViewController"
   let ROW_HEIGHT = 150.0
   
   var memes: [Meme]! {
@@ -45,6 +46,13 @@ class SentMemeTableViewController: UITableViewController {
     cell.memeCaption.text = meme.topText + " " + meme.bottomText
     
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let detailController = storyboard!.instantiateViewController(withIdentifier: memeDetailControllerIdentifier) as! MemeDetailViewController
+    let meme = memes[indexPath.row]
+    detailController.meme = meme
+    navigationController?.pushViewController(detailController, animated: true)
   }
   
   @objc func onDidSaveMeme(_ notification: Notification) {

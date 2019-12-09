@@ -10,6 +10,8 @@ import UIKit
 
 class MemeEditorViewController: UIViewController {
 
+  // MARK: Outlets
+  
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var topTextField: UITextField!
   @IBOutlet weak var bottomTextField: UITextField!
@@ -18,6 +20,8 @@ class MemeEditorViewController: UIViewController {
   @IBOutlet weak var shareButton: UIBarButtonItem!
   @IBOutlet weak var topToolBar: UIToolbar!
   @IBOutlet weak var bottomToolBar: UIToolbar!
+  
+  // MARK: Life Cycle Methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -56,6 +60,8 @@ class MemeEditorViewController: UIViewController {
     unsubscribeFromKeyboardNotifications()
   }
   
+  // MARK: Actions
+  
   @IBAction private func pickAnImage(_ sender: UIBarButtonItem) {
     
     let imagePicker = UIImagePickerController()
@@ -88,6 +94,8 @@ class MemeEditorViewController: UIViewController {
   @IBAction private func cancelEditing() {
     dismiss(animated: true, completion: nil)
   }
+  
+  // MARK: Class Methods
   
   private func subscribeToKeyboardNotifications() {
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -146,6 +154,8 @@ class MemeEditorViewController: UIViewController {
   }
 }
 
+// MARK: Extensions
+
 extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -180,7 +190,5 @@ extension MemeEditorViewController: UITextFieldDelegate {
   }
 }
 
-extension Notification.Name {
-  static let didSaveMeme = Notification.Name("didSaveMeme")
-}
+
 

@@ -10,31 +10,28 @@ import UIKit
 
 class SentMemeTableViewController: UITableViewController {
   
+  // MARK: Variables and Properties
+  
   private let reuseIdentifier = "MemeTableViewCell"
-  private let memeDetailControllerIdentifier = "MemeDetailViewController"
-  let ROW_HEIGHT = 150.0
   
   var memes: [Meme]! {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     return appDelegate.memes
   }
   
-  deinit {
-    NotificationCenter.default.removeObserver(self, name: .didSaveMeme, object: nil)
-  }
-  
+  // MARK: Life Cycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     
     navigationController!.navigationBar.topItem?.title = "Sent Memes"
     
-    tableView.rowHeight = CGFloat(ROW_HEIGHT)
+    tableView.rowHeight = CGFloat(Constants.rowHeight)
     tableView.separatorStyle = .none
     
     NotificationCenter.default.addObserver(self, selector: #selector(onDidSaveMeme(_:)), name: .didSaveMeme, object: nil)
   }
 
-  // MARK: - Table view data source
+  // MARK: - Table View Data Source
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return memes.count
@@ -50,14 +47,22 @@ class SentMemeTableViewController: UITableViewController {
     return cell
   }
   
+  // MARK: Table View Delegate
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let detailController = storyboard!.instantiateViewController(withIdentifier: memeDetailControllerIdentifier) as! MemeDetailViewController
+    let detailController = storyboard!.instantiateViewController(withIdentifier: Constants.StoryboardID.detailViewID) as! MemeDetailViewController
     let meme = memes[indexPath.row]
     detailController.meme = meme
     navigationController?.pushViewController(detailController, animated: true)
   }
   
+  // MARK: Class Methods
+  
   @objc func onDidSaveMeme(_ notification: Notification) {
     tableView.reloadData()
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self, name: .didSaveMeme, object: nil)
   }
 }

@@ -10,26 +10,25 @@ import UIKit
 
 class SentMemeCollectionViewController: UICollectionViewController {
   
+  // MARK: Outlets
   @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
   
-  private let ITEM_SPACE: CGFloat = 3.0
+  // MARK: Variables and Properties
+  
   private let reuseIdentifier = "MemeCollectionViewCell"
-  private let memeDetailControllerIdentifier = "MemeDetailViewController"
-  var memes: [Meme] {
+  private var memes: [Meme] {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     return appDelegate.memes
   }
   
-  deinit {
-    NotificationCenter.default.removeObserver(self, name: .didSaveMeme, object: nil)
-  }
+  // MARK: Life Cycle Methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     navigationController!.navigationBar.topItem?.title = "Sent Memes"
     
-    let space: CGFloat = ITEM_SPACE
+    let space: CGFloat = CGFloat(Constants.itemSpace)
     let dimension = (self.view.frame.width - (2 * space)) / 3.0
     
     flowLayout.minimumInteritemSpacing = space
@@ -39,7 +38,8 @@ class SentMemeCollectionViewController: UICollectionViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(onDidSaveMeme(_:)), name: .didSaveMeme, object: nil)
   }
   
-  // MARK: UICollectionViewDataSource
+  // MARK:  Collection View Data Source
+  
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return memes.count
   }
@@ -52,16 +52,22 @@ class SentMemeCollectionViewController: UICollectionViewController {
     return cell
   }
   
+  // MARK: Collection View Delegate
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let detailController = storyboard!.instantiateViewController(withIdentifier: memeDetailControllerIdentifier) as! MemeDetailViewController
+    let detailController = storyboard!.instantiateViewController(withIdentifier: Constants.StoryboardID.detailViewID) as! MemeDetailViewController
     let meme = memes[indexPath.item]
     detailController.meme = meme
     navigationController!.pushViewController(detailController, animated: true)
   }
   
- @objc func onDidSaveMeme(_ notification: Notification) {
-   print("onDIdSaveMeme called")
-  collectionView.reloadData()
- }
+  // MARK: Class Methods
   
+  @objc func onDidSaveMeme(_ notification: Notification) {
+    print("onDIdSaveMeme called")
+    collectionView.reloadData()
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self, name: .didSaveMeme, object: nil)
+  }
 }

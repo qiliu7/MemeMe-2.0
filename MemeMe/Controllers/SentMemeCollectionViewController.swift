@@ -26,7 +26,7 @@ class SentMemeCollectionViewController: UICollectionViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationController!.navigationBar.topItem?.title = "Sent Memes"
+    navigationController!.navigationBar.topItem?.title = Constants.title
     
     let space: CGFloat = CGFloat(Constants.itemSpace)
     let dimension = (self.view.frame.width - (2 * space)) / 3.0

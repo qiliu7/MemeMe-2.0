@@ -23,7 +23,7 @@ class SentMemeTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationController!.navigationBar.topItem?.title = "Sent Memes"
+    navigationController!.navigationBar.topItem?.title = Constants.title
     
     tableView.rowHeight = CGFloat(Constants.rowHeight)
     tableView.separatorStyle = .none

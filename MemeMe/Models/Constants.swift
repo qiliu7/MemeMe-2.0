@@ -12,6 +12,7 @@ struct Constants {
   
   static let rowHeight = 150.0
   static let itemSpace = 3.0
+  static let title = "Sent Memes"
   
   struct StoryboardID {
     static let detailViewID = "MemeDetailViewController"

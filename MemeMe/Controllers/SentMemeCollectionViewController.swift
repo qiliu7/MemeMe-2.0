@@ -63,7 +63,6 @@ class SentMemeCollectionViewController: UICollectionViewController {
   // MARK: Class Methods
   
   @objc func onDidSaveMeme(_ notification: Notification) {
-    print("onDIdSaveMeme called")
     collectionView.reloadData()
   }
   
